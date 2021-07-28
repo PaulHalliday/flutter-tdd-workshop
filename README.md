@@ -45,25 +45,25 @@ The liquid has some interesting property. When the temperature changes it change
 See the following table from a real-world experiment
 
 ```md
-  | temperature  | color   |
-  |--------------|---------|
-  | < 0          | #1f3dff |
-  | < 10         | #1f88ff |
-  | < 18         | #20bbe6 |
-  | < 27         | #24ebf2 |
-  | < 40         | #1ec943 |
-  | < 51         | #1ddb99 |
-  | < 59         | #5da82a |
-  | < 74         | #c2c240 |
-  | < 85         | #ffac26 |
-  | \>= 85       | #ff4400 |
+| temperature | color   |
+| ----------- | ------- |
+| < 0         | #1f3dff |
+| < 10        | #1f88ff |
+| < 18        | #20bbe6 |
+| < 27        | #24ebf2 |
+| < 40        | #1ec943 |
+| < 51        | #1ddb99 |
+| < 59        | #5da82a |
+| < 74        | #c2c240 |
+| < 85        | #ffac26 |
+| \>= 85      | #ff4400 |
 ```
 
 Write widget tests (multiple) that change the temperature and then verify the color of the liquid.
 
 Start in `test/liquid_test.dart`
 
-First learn how to find Widgets in the widget tree <https://api.flutter.dev/flutter/flutter_test/CommonFinders-class.html>
+First learn how to find Widgets in the widget tree <https://api.flutter.dev/flutter/flutter_test/CommonFinders-class.html>\*\*\*\*
 Try to read the current value of the liquid.
 
 Then [enter text](https://flutter.dev/docs/cookbook/testing/widget/tap-drag#2-enter-text-in-the-text-field) as temperature then [tap](https://flutter.dev/docs/cookbook/testing/widget/tap-drag#3-ensure-tapping-a-button-adds-the-todo) the confirm button.

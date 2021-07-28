@@ -1,8 +1,15 @@
-import 'package:liquid_simulation/hazardous_liquid.dart';
-import 'package:liquid_simulation/temperature_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:liquid_simulation/hazardous_liquid.dart';
+import 'package:liquid_simulation/key_constants.dart';
+import 'package:liquid_simulation/temperature_model.dart';
 import 'package:provider/provider.dart';
+
+extension DoSomething on BuildContext {
+  T readProvider<T>() {
+    return Provider.of<T>(this, listen: false);
+  }
+}
 
 void main() {
   runApp(LabApp());
@@ -30,7 +37,16 @@ class _LabPageState extends State<LabPage> {
   @override
   void initState() {
     super.initState();
-    _tempTextController = TextEditingController();
+    _tempTextController = TextEditingController(
+      text: context.read<TemperatureModel>().temperature.toStringAsFixed(0),
+    );
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    _tempTextController.text = context.read<TemperatureModel>().temperature.toStringAsFixed(0);
   }
 
   @override
@@ -85,7 +101,21 @@ class _LabPageState extends State<LabPage> {
                           ),
                         ],
                       ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          IncrementButton(),
+                          DecrementButton(),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       OutlinedButton(
+                        key: AppKeys.confirmButtonKey,
                         onPressed: () {
                           context.read<TemperatureModel>().temperature = double.parse(_tempTextController.text);
                         },
@@ -111,6 +141,34 @@ class _LabPageState extends State<LabPage> {
           )
         ],
       ),
+    );
+  }
+}
+
+class DecrementButton extends StatelessWidget {
+  const DecrementButton({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () => context.read<TemperatureModel>().decrement(),
+      child: const Icon(Icons.remove),
+    );
+  }
+}
+
+class IncrementButton extends StatelessWidget {
+  const IncrementButton({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () => context.read<TemperatureModel>().increment(),
+      child: const Icon(Icons.add),
     );
   }
 }

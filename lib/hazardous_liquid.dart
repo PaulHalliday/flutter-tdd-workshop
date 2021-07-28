@@ -1,7 +1,8 @@
 import 'dart:math' as math;
 
-import 'package:liquid_simulation/temperature_model.dart';
 import 'package:flutter/material.dart';
+import 'package:liquid_simulation/key_constants.dart';
+import 'package:liquid_simulation/temperature_model.dart';
 import 'package:provider/provider.dart';
 
 class HazardousLiquid extends StatelessWidget {
@@ -31,10 +32,9 @@ class HazardousLiquid extends StatelessWidget {
                         bottomLeft: Radius.circular(35),
                         bottomRight: Radius.circular(35),
                       ),
-                      child: Container(
+                      child: LiquidContainer(
                         color: color,
                         height: height,
-                        width: 84,
                       ),
                     );
                   },
@@ -89,5 +89,26 @@ class HazardousLiquid extends StatelessWidget {
     final range = (500 * temperature * temperature + baseTemperatureExpansionCalculation) /
         (500 * 85 * 85 + baseTemperatureExpansionCalculation);
     return math.max(0, math.min(1, range));
+  }
+}
+
+class LiquidContainer extends StatelessWidget {
+  final Color? color;
+  final double? height;
+
+  const LiquidContainer({
+    Key? key,
+    this.color,
+    this.height,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      key: AppKeys.liquidKey,
+      color: color,
+      height: height,
+      width: 84,
+    );
   }
 }

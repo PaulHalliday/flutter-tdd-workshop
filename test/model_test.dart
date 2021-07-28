@@ -52,12 +52,4 @@ void main() {
 
     expect(model.temperature, expected);
   });
-
-  test('Determine if notifyListeners is called', () {
-    expect(model.temperature, temp);
-
-    model.increment();
-  });
-
-  // notifyListeners
 }

@@ -12,17 +12,15 @@ class TemperatureModel extends ChangeNotifier {
 
   /// Increases the [temperature] by 5º
   void increment() {
-    // TODO 1. write test
-    // TODO 2. implement
-    // TODO 3. commit
+    _temperature += 5;
+
+    // Do something
     notifyListeners();
   }
 
   /// Decreases the [temperature] by 5º
   void decrement() {
-    // TODO 1. write test
-    // TODO 2. implement
-    // TODO 3. commit
+    _temperature -= 5;
     notifyListeners();
   }
 }
